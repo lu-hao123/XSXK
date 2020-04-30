@@ -1,169 +1,259 @@
-package 学生选课;
+package school;
+import java.awt.Button;  
+import java.awt.FlowLayout;  
+import java.awt.Frame;
+public class FrameDemo {
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+	//public static void main(String[] args) {
+		private Frame f;  
+		     private Button but;  
+		      
+	     FrameDemo(){  
+		         init();  
+		          
+		     }  
+		       
+		     public void init(){  
+		          
+		        f=new Frame("my freame");  
+		         f.setBounds(300,100,600,500);  
+		         f.setLayout(new FlowLayout());  //采用流式布局  
+		           
+		         but=new  Button("my button");  
 
-public class register extends JFrame implements ActionListener{
-	JLabel id = new JLabel("请输入学号：");
-	JLabel name = new JLabel("请输入姓名：");
-	JLabel password = new JLabel("请输入密码：");
-	JTextField jtf1 = new JTextField(15); 
-	JTextField jtf2 = new JTextField(15); 
-	JTextField jtf3 = new JTextField(15); 
-	JButton r = new JButton("注册");
+	}
+
+}
+package school;
+
+public  class Num {
+	public int num[];
+	public String name[];
+	public String sex[];
+	public String class1[];
 	
-	register(){
-		setTitle("注册");
-		setSize(300,250);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		setLayout(new FlowLayout());
+}
+package school;
+
+import java.util.Scanner;
+
+public class Object {
+	static Student stu = new Student();
+	static Teacher tea = new Teacher();
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		stu.getclass();
+		change();
 		
-		add(id);add(jtf1);
-		add(name);add(jtf2);
-		add(password);add(jtf3);
-		add(r);
-		r.addActionListener(this);
+		tea.getclass();
+		scanner.close();
+		
+		
+	}
+	static void change() {
+		for(int i = 0 ; i < stu.tea1.length - 1 ; i++) {
+			for(int j = 0 ; j < tea.num.length - 1 ; j++)
+			if(stu.tea1[i] == tea.num[j]) {
+				 tea.stu[j] = stu.num[i];
+			}
+		}
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==r) {
-			JOptionPane.showMessageDialog(null, "注册成功！");
-			new caozuo();
-			/*
-			 * 将注册信息转化成字符，写入txt中
-			 */
-			Stu student = new Stu(jtf1.getText(),jtf2.getText(),jtf3.getText());
-			StringBuffer s = new StringBuffer();
-			s.append(student);
-			try {
-				//打开文件，并写入注册的信息
-				FileWriter fw=new FileWriter("C:\\Users\\Thinkpad\\Desktop\\学生选课.txt",true);
-				fw.write(s.toString());
-				fw.close();
-				} 
-			catch (IOException n) 
-				{
-				n.printStackTrace();
-				}
+}
+package school;
+
+public class Class {
+	public int num[] = {1,2,3};
+	public String name[] = {"体育","物理","化学"};
+	public String place[] = {"1号教室","2号教室","3号教室"};
+	public String time[] = {"周一：9：00-10：00","周二：13：00-14：00","周三：12：00-13：00"};
+	public String grade[] = {"2","2","2"};
+	
+
+}
+package school;
+
+import java.util.Scanner;
+
+public class Teacher extends Num{
+	int num[] = {1,2,3}; 
+	String name[] = {"叶风","晴岚","王东"};
+	String sex[] = {"男","女","男"};
+	int class1[] = {1,2,3};
+	int stu[] = {0,0,0};
+	Teacher(){
+		
+		}
+	void getclass(){
+		int j = 0;
+		int i = 0;
+		System.out.println("请输入你的教师号");
+		Student stu1 = new Student();
+		Class cla = new Class(); 
+		Scanner num3 = new Scanner(System.in);
+		
+		 int temp = 0;
+		 
+		 if(num3.hasNextInt()) {
+		 temp = num3.nextInt();
+		 }
+		 else
+		 getclass();
+		for(i = 0 ; i < num.length - 1 ; i++) {
+			if(temp == num[i]) {
+				System.out.println(num[i] + " " + name[i] + " " + sex[i] );
+				break;
+			}
+		}
+		for( j = 0 ; j < num.length-1 ; j++) {
+			if(stu[i] == stu1.num[j]) {
+				break;
+			} 
+		}
+		System.out.println(stu1.name[j] + " " + stu1.num[j] + " " + stu1.sex[j] + "");
+		System.out.println(cla.name[i] + " " + cla.num[i] + " " +cla.place[i] + " " + cla.grade[i] + " " +cla.time[i]);
+	
+	 
+	}
+
+	void class1(int num){
+		}
+	}
+package school;
+
+import java.util.Scanner;
+
+public class Student extends Num {
+	int num[] = {1,2,3};
+	String name[] = {"小红","小蓝","小黄"};
+	 String sex[] = {"女","男","男"};
+	 int class1[] = {1,2,3};
+	 int tea1[] = {1,2,3};
+	 Student(){
+	}
+	void getclass() {
+		int i;
+		System.out.println("请输入你的学生号");
+		Scanner num1 = new Scanner(System.in);
+		int temp = 0;
+		temp = num1.nextInt();
+		for(i = 0 ; i < num.length - 1 ; i++) {
+			if(temp == num[i]) {
+				System.out.println(toString(i));
+				break;
+			}}
+			System.out.println("请选择你要做的操作：");
+			System.out.println("1.选课");
+			System.out.println("2.取消所选课");
+			System.out.println("3.重选");
+			int a = num1.nextInt();
+			switch(a) {
+			case 1:
+				addclass(i);
+				break;
+			case 2:
+				delclass(i);
+				break;
+			case 3:
+				modclass(i);
+				break;
+			}
+		System.out.println(toString(i));
+		
+	
+	}
+	void addclass(int i) {
+		
+		System.out.println("选择课程：");
+		System.out.println("1.体育，课程信息：{授课老师：叶风，1号教室，周一：8：00-9：00}");
+		System.out.println("2.物理，课程信息：{授课老师:  晴岚,2号教室,周三：13：00-14：00}");
+		System.out.println("3.英语，课程信息：{授课老师:  王东,3号教室,周五：12：00-13：00}");
+		Scanner num2 = new Scanner(System.in);
+		switch(num2.nextInt()) { 
+		case 1: 
+			class1[i] = 1;
+			tea1[i] = 1;
+			break;
+		case 2:
+			class1[i] = 2;
+			tea1[i] = 2;
+			break;
+		case 3:
+			class1[i] = 3;
+			tea1[i] = 3;
+			break;
+		default :
+			addclass(i);
+			break;
 			
-			}
+		
 		}
 		
-	public static void main(String[] args) {
-		register r = new register();
-	}
 	
-}
-package 学生选课;
-
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.swing.*;
-
-public class Choosing extends JFrame implements  ActionListener{
-	JLabel a = new JLabel("请选择课程：");
-	JButton r = new JButton("确定");
-	JCheckBox jc1 = new JCheckBox("老师名称：李阳    老师编号： 1  所授课程：高数   学分：6 地点：教101   时间：10:00am-11:00am");
-	JCheckBox jc2 = new JCheckBox("老师名称：赵筹    老师编号： 2  所授课程：英语   学分：5 地点：教102   时间：11:00pm-12:00pm");
-	JCheckBox jc3 = new JCheckBox("老师名称：钱心   老师编号：  3 所授课程：物理   学分：4  地点：教103  时间：13:00pm-14:00pm");
-	
-	Choosing(){
-		setTitle("选课");
-		setSize(600,250);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		setLayout(new FlowLayout());
 		
-		add(a);
-		add(jc1);
-		add(jc2);
-		add(jc3);
-		add(r);
-		jc1.addActionListener(this);
-		jc2.addActionListener(this);
-		jc3.addActionListener(this);
-		r.addActionListener(this);
+		
 	}
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==r) {
-				JOptionPane.showMessageDialog(null, "选课成功！");
-				new caozuo();
-				try {
-					FileWriter fw1=new FileWriter("C:\\Users\\Thinkpad\\Desktop\\学生选课.txt",true);
-					BufferedWriter fw=new BufferedWriter(fw1);
-					fw.write("已选课程：");
-					fw.newLine();
-					fw.write("老师名称：李阳    老师编号： 1  所授课程：高数   学分：6 地点：教101   时间：10:00am-11:00am");
-					fw.newLine();
-					fw.write("老师名称：赵筹    老师编号： 2  所授课程：英语   学分：5 地点：教102   时间：11:00pm-12:00pm");
-					fw.newLine();
-					fw.write("老师名称：钱心   老师编号：  3 所授课程：物理   学分：4  地点：教103  时间：13:00pm-14:00pm");					
-					fw.close();
-				}
-				catch (IOException n) 
-				{
-				n.printStackTrace();
-				}
-			}
-		}
-		public static void main(String args[]) {
-			Choosing c = new Choosing();
-		}
-}
-package 学生选课;
-/*
- * 该部分主要用于让学生选择是选课还是输出信息
- */
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+	void delclass(int i) {
+		
+		class1[i] = 0;
+		
+		
+	}
+	void modclass(int i) {
 
-import javax.swing.*;
-public class caozuo extends JFrame implements ActionListener{
-	JButton Choosing = new JButton("选      课");
-	JButton Printing = new JButton("输出信息");
-	JLabel wel = new JLabel("欢迎！请进行以下操作");
-	
-	caozuo(){
-		setTitle("学生");
-		setSize(250,250);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		setLayout(new BorderLayout());
-		add("North",wel);
-		add("West",Choosing);add("East",Printing);
-		validate();
-		Choosing.addActionListener(this);;
-		Printing.addActionListener(this);
-	}
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==Choosing) {
-			new Choosing();
+		System.out.println("选择想要的课程：");
+		System.out.println("1.体育");
+		System.out.println("2.物理");
+		System.out.println("3.化学");
+		Scanner num2 = new Scanner(System.in);
+		int a = num2.nextInt();
+		switch(a) { 
+		case 1: 
+			class1[i] = 1;
+			tea1[i] = 1;
+			break;
+		case 2:
+			class1[i] = 2;
+			tea1[i] = 2;
+			break;
+		case 3:
+			class1[i] = 3;
+			tea1[i] = 3;
+			break;
+			default :
+				modclass(i);
+			
 		}
-		if(e.getSource()==Printing) {
-			try {
-				Runtime.getRuntime().exec("C:\\Users\\Thinkpad\\Desktop\\学生选课.txt");
-				} catch (Exception e1) {
-					System.out.println("txt打开失败！");
-					e1.printStackTrace();
-				}
-				} 
-	   
+		
+	
+		
+		
 	}
-	public static void main(String[] args) {
-		caozuo c = new caozuo();
+	
+	public String toString(int i) {
+		Teacher  tea = new Teacher();
+		
+		int j;
+		Class cla = new Class();
+		
+		for( j = 0 ; j < cla.num.length-1 ; j++) {
+		if(cla.num[j] == class1[i]) {
+			
+			break;
+		}	
+		}
+		if(class1[i] == 0) {
+			return num[i] + " " + name[i] + " " + sex[i] + " " + class1[i] + " " + "所选课程：" + "暂没";
+			
+		}
+		else{
+		return num[i] + " " + name[i] + " " + sex[i] + " " + class1[i] + " " + "所选课程：" + cla.name[j] +" " + tea.name[j];
+	
+		// TODO 自动生成的方法存根
+
 	}
+		
+		
+		
+}
 }
